@@ -3,9 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package travelappp;
+import java.awt.Component;
+import java.awt.Image;
 import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -34,6 +38,7 @@ public class Bangalore extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        insertBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +68,13 @@ public class Bangalore extends javax.swing.JFrame {
             }
         });
 
+        insertBtn.setText("Insert");
+        insertBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insertBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -73,12 +85,13 @@ public class Bangalore extends javax.swing.JFrame {
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 452, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(383, 383, 383)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(jLabel1)
+                        .addGap(383, 383, 383)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(insertBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -91,7 +104,9 @@ public class Bangalore extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(insertBtn))
                 .addGap(6, 6, 6))
         );
 
@@ -123,19 +138,41 @@ public class Bangalore extends javax.swing.JFrame {
             ResultSet rs = st.executeQuery(pst);
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             int i = 0;
+            String selectedImagePath;
 
             while(rs.next()) {
 
                 login = rs.getString("login_id");
                 loc = rs.getString("location");
-                photo = rs.getString("photo");
+                selectedImagePath = rs.getString("photo");
                 rev = rs.getString("reviews");
                 
-                String tbdata[] = {login,loc,photo,rev};
-                
-                model.addRow(tbdata);
+                //ImageIcon ii = new ImageIcon(selectedImagePath);
 
-                i++;
+                //Image image = ii.getImage().getScaledInstance(jLabelImage.getWidth(), jLabelImage.getHeight(), Image.SCALE_SMOOTH);
+ 
+                //jLabelImage.setIcon(new ImageIcon(image));
+                
+                
+                //Object tbdata[] = {login,loc,,rev};
+                
+               //model.addRow(tbdata);
+               
+                JLabel imageLabel = new JLabel();
+                ImageIcon imageicon = new ImageIcon(selectedImagePath);
+                Image img = imageicon.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+                imageLabel.setIcon(new ImageIcon(img));
+                
+                model.addRow(new Object[]{login, loc, imageLabel, rev});
+
+              
+                
+                Object[] newIdentifiers = new Object[]{"login_id", "location", "photo","reviews"};
+                model.setColumnIdentifiers(newIdentifiers);
+                jTable1.setFillsViewportHeight(true);
+                jTable1.getColumn("photo").setCellRenderer(new Bangalore.CellRenderer());
+                
+                 i++;
 
             }
             if (i < 1) 
@@ -158,6 +195,12 @@ public class Bangalore extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void insertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBtnActionPerformed
+        insertBangalore mf = new insertBangalore();
+                    new insertBangalore().setVisible(true);
+                    this.dispose();
+    }//GEN-LAST:event_insertBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -193,8 +236,30 @@ public class Bangalore extends javax.swing.JFrame {
             }
         });
     }
+    
+    class CellRenderer implements TableCellRenderer {
+ 
+        @Override
+        public Component getTableCellRendererComponent(JTable table,
+                Object value,
+                boolean isSelected,
+                boolean hasFocus,
+                int row,
+                int column) {
+ 
+            TableColumn tb = jTable1.getColumn("photo");
+            tb.setMaxWidth(200);
+            tb.setMinWidth(100);
+ 
+            jTable1.setRowHeight(200);
+ 
+            return (Component) value;
+        }
+ 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton insertBtn;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

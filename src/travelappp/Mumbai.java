@@ -3,9 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package travelappp;
+import java.awt.Component;
+import java.awt.Image;
 import java.sql.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 /**
  *
@@ -47,15 +51,10 @@ public class Mumbai extends javax.swing.JFrame {
             new String [] {
                 "Username", "Location", "Photo", "Review"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.String.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
+        ));
+        jTable1.setFillsViewportHeight(true);
+        jTable1.setGridColor(new java.awt.Color(153, 255, 255));
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Back");
@@ -138,23 +137,48 @@ public class Mumbai extends javax.swing.JFrame {
             String rev = "";
             Statement st = con.createStatement();
             String pst = "select * from mumbai";
-
+            
+            byte b[];
+            Blob blob;
+            
             ResultSet rs = st.executeQuery(pst);
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             int i = 0;
+            String selectedImagePath;
 
             while(rs.next()) {
 
                 login = rs.getString("login_id");
                 loc = rs.getString("location");
-                photo = rs.getString("photo");
+                selectedImagePath = rs.getString("photo");
                 rev = rs.getString("reviews");
                 
-                String tbdata[] = {login,loc,photo,rev};
-                
-                model.addRow(tbdata);
+                //ImageIcon ii = new ImageIcon(selectedImagePath);
 
-                i++;
+                //Image image = ii.getImage().getScaledInstance(jLabelImage.getWidth(), jLabelImage.getHeight(), Image.SCALE_SMOOTH);
+ 
+                //jLabelImage.setIcon(new ImageIcon(image));
+                
+                
+                //Object tbdata[] = {login,loc,,rev};
+                
+               //model.addRow(tbdata);
+               
+                JLabel imageLabel = new JLabel();
+                ImageIcon imageicon = new ImageIcon(selectedImagePath);
+                Image img = imageicon.getImage().getScaledInstance(100,100, Image.SCALE_SMOOTH);
+                imageLabel.setIcon(new ImageIcon(img));
+                
+                model.addRow(new Object[]{login, loc, imageLabel, rev});
+
+              
+                
+                Object[] newIdentifiers = new Object[]{"login_id", "location", "photo","reviews"};
+                model.setColumnIdentifiers(newIdentifiers);
+                jTable1.setFillsViewportHeight(true);
+                jTable1.getColumn("photo").setCellRenderer(new CellRenderer());
+                
+                 i++;
 
             }
             if (i < 1) 
@@ -225,6 +249,27 @@ public class Mumbai extends javax.swing.JFrame {
             }
         });
     }
+    
+    class CellRenderer implements TableCellRenderer {
+ 
+        @Override
+        public Component getTableCellRendererComponent(JTable table,
+                Object value,
+                boolean isSelected,
+                boolean hasFocus,
+                int row,
+                int column) {
+ 
+            TableColumn tb = jTable1.getColumn("photo");
+            tb.setMaxWidth(200);
+            tb.setMinWidth(100);
+ 
+            jTable1.setRowHeight(200);
+ 
+            return (Component) value;
+        }
+ 
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Refresh;
@@ -235,3 +280,5 @@ public class Mumbai extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }
+
+

@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package travelappp;
-import java.awt.Color;
 import java.awt.Image;
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,12 +22,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Karan
  */
-public class insert extends javax.swing.JFrame {
+public class insertBangalore extends javax.swing.JFrame {
 
     /**
      * Creates new form insert
      */
-    public insert() {
+    public insertBangalore() {
         initComponents();
     }
 
@@ -96,6 +95,11 @@ public class insert extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,12 +119,7 @@ public class insert extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(242, 242, 242)
-                                .addComponent(jLabelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
+                                .addComponent(jLabelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -172,7 +171,6 @@ public class insert extends javax.swing.JFrame {
             
             String login = jTextField1.getText();
             String loc = jTextField2.getText();
- 
             String rev = jTextField4.getText();
             
             //Statement st = con.createStatement();
@@ -184,7 +182,7 @@ public class insert extends javax.swing.JFrame {
             
             
             //st.executeUpdate("insert into mumbai values('"+login+"','"+loc+"',NULL,'"+rev+"');");
-            ps= con.prepareStatement("insert into mumbai values(?,?,?,?);");
+            ps= con.prepareStatement("insert into bangalore values(?,?,?,?);");
             ps.setString(1,login);
             ps.setString(2,loc);
             ps.setString(3,rev);
@@ -194,11 +192,6 @@ public class insert extends javax.swing.JFrame {
            
             
             JOptionPane.showMessageDialog(null,"Inserted Successfully!");
-            
-            jTextField1.setText("");
-            jTextField2.setText("");
-            jTextField4.setText("");
-            jLabelImage.setVisible(false);
         }        
         catch (Exception ex)
         {
@@ -250,20 +243,21 @@ public class insert extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(insert.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(insertBangalore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(insert.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(insertBangalore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(insert.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(insertBangalore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(insert.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(insertBangalore.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new insert().setVisible(true);
+                new insertBangalore().setVisible(true);
             }
         });
     }
