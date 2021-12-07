@@ -28,7 +28,8 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jScrollPane1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="449" max="32767" attributes="0"/>
+                      <Component id="delete" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="386" max="32767" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="98" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="334" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="70" max="-2" attributes="0"/>
@@ -50,6 +51,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="delete" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="465" max="32767" attributes="0"/>
@@ -144,6 +146,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="delete">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Delete"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
