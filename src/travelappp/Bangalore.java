@@ -29,7 +29,7 @@ public class Bangalore extends javax.swing.JFrame
     String add;
     int passOfID;
     String path;
-    
+    int id;
     public Bangalore(String str) {
         initComponents();
         namePass=str;
@@ -49,7 +49,6 @@ public class Bangalore extends javax.swing.JFrame
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1290, 549));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel1.setText("Bangalore");
@@ -104,6 +103,7 @@ public class Bangalore extends javax.swing.JFrame
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(205, 194, 254));
         jButton4.setText("Update");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,7 +173,7 @@ public class Bangalore extends javax.swing.JFrame
             String loc = "";
             String photo = "";
             String rev = "";
-            int id;
+            
             Statement st = con.createStatement();
             String pst = "select * from bangalore";
 
@@ -229,7 +229,7 @@ public class Bangalore extends javax.swing.JFrame
 
     private void insertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBtnActionPerformed
         insertBangalore mf = new insertBangalore();
-                    new insertBangalore(namePass).setVisible(true);
+                    new insertBangalore(namePass,id).setVisible(true);
                     this.dispose();
     }//GEN-LAST:event_insertBtnActionPerformed
 

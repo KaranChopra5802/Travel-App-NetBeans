@@ -122,6 +122,12 @@ public class home extends javax.swing.JFrame
 
         jLabel8.setText("Logged-In as :");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(433, 60, -1, -1));
+
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(513, 60, 57, 14));
 
         jLabel9.setFont(new java.awt.Font("Lucida Handwriting", 0, 30)); // NOI18N
@@ -192,6 +198,10 @@ public class home extends javax.swing.JFrame
                 JOptionPane.showMessageDialog(null,"Error");
             }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     public static void main(String args[]) 
     {        

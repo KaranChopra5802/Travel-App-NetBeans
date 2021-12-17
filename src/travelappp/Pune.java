@@ -31,7 +31,7 @@ public class Pune extends javax.swing.JFrame {
         initComponents();
         namePass = str;
     }
-
+            int id;
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,6 +100,7 @@ public class Pune extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setBackground(new java.awt.Color(205, 194, 254));
         jButton4.setText("Update");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,7 +171,7 @@ public class Pune extends javax.swing.JFrame {
             String loc = "";
             String photo = "";
             String rev = "";
-            int id;
+
             Statement st = con.createStatement();
             String pst = "select * from pune";
 
@@ -232,7 +233,7 @@ public class Pune extends javax.swing.JFrame {
 
     private void insertBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insertBtnActionPerformed
         insertPune mf = new insertPune();
-                    new insertPune(namePass).setVisible(true);
+                    new insertPune(namePass,id).setVisible(true);
                     this.dispose();
     }//GEN-LAST:event_insertBtnActionPerformed
 

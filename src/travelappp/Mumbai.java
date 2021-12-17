@@ -51,7 +51,6 @@ public class Mumbai extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(205, 194, 254));
-        setPreferredSize(new java.awt.Dimension(1290, 549));
 
         jLabel1.setBackground(new java.awt.Color(205, 194, 254));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -112,6 +111,7 @@ public class Mumbai extends javax.swing.JFrame
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(205, 194, 254));
         jButton3.setText("Update");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -167,7 +167,7 @@ public class Mumbai extends javax.swing.JFrame
                     new home(namePass).setVisible(true);
                     this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
-
+int id;
     private void RefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RefreshActionPerformed
         try 
         {
@@ -181,7 +181,6 @@ public class Mumbai extends javax.swing.JFrame
             loc = "";
             photo = "";
             rev = "";
-            int id;
             Statement st = con.createStatement();
             
             String pst = "select * from mumbai";
@@ -245,7 +244,7 @@ public class Mumbai extends javax.swing.JFrame
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         insert mf = new insert();
-                    new insert(namePass).setVisible(true);
+                    new insert(namePass,id).setVisible(true);
                     this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

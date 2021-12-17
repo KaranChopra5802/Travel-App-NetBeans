@@ -9,6 +9,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
 
 public class Register extends javax.swing.JFrame 
@@ -18,10 +19,12 @@ public class Register extends javax.swing.JFrame
         initComponents();
     }
     String gen;
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Bg1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         username = new javax.swing.JTextField();
@@ -96,6 +99,7 @@ public class Register extends javax.swing.JFrame
         });
         getContentPane().add(repass, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 301, 147, -1));
 
+        Bg1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jRadioButton1.setText("Male");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +109,7 @@ public class Register extends javax.swing.JFrame
         });
         getContentPane().add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 339, -1, -1));
 
+        Bg1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jRadioButton2.setText("Female");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -114,6 +119,7 @@ public class Register extends javax.swing.JFrame
         });
         getContentPane().add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
 
+        Bg1.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jRadioButton3.setText("Other");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -166,7 +172,7 @@ public class Register extends javax.swing.JFrame
             
             
             Statement stmt = con.createStatement();
-            String sql = "INSERT INTO login values('"+uname1+"','"+pass1+"','"+mail+"','"+name+"','"+gen+"')";
+            
             String sql1 = "SELECT * FROM login where login_id='"+uname1+"';";
             
             ResultSet rs = stmt.executeQuery(sql1);
@@ -175,8 +181,17 @@ public class Register extends javax.swing.JFrame
             {
                 JOptionPane.showMessageDialog(null, "Username Exists", "Error", JOptionPane.ERROR_MESSAGE);         
             }
+            else if(uname1.isEmpty() || pass1.isEmpty() || name.isEmpty() || mail.isEmpty() || rePass.isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Please enter all fields", "Error", JOptionPane.ERROR_MESSAGE); 
+            }
+            else if(rePass.equals(pass1)==false)
+            {
+                JOptionPane.showMessageDialog(null, "Please enter the correct password in both cases", "Error", JOptionPane.ERROR_MESSAGE);
+            }
             else
             {
+                String sql = "INSERT INTO login values('"+uname1+"','"+pass1+"','"+mail+"','"+name+"','"+gen+"')";
                 stmt.execute(sql);
                 JOptionPane.showMessageDialog(null, "Registration Successful", "Registration Success", 1);
                 home mf = new home();
@@ -227,6 +242,7 @@ public class Register extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup Bg1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
